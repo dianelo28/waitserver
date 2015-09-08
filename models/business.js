@@ -5,9 +5,9 @@ var Comment = require("./comment.js");
 
 var BusinessSchema = new Schema({
 	business_id: {type: String, require: true},
-	twoWait: {type: String, default: 0},
-	fourWait: {type: String, default: 0},
-	fiveWait: {type: String, default: 0},
+	twoWait: String,
+	fourWait: String,
+	fiveWait: String,
 	comments: [Comment.schema]
 });
 

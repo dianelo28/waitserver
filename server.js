@@ -159,6 +159,14 @@ app.get('/api/business/:id', function (req,res) {
   }).then(function(data) {
     res.json(data);
   });
+})
+
+app.get('/api/waits/:id', function (req,res){
+  var bizId = {business_id: req.params.id};
+    Business.findOne(bizId, function(err, foundBiz){
+      res.json(foundBiz);
+      console.log(foundBiz)
+    });
 });
 
 app.put('/api/business/:id', function (req,res){
@@ -166,7 +174,7 @@ app.put('/api/business/:id', function (req,res){
   var party = req.body.party
 	Business.findOne(bizId, function(err, foundBiz){
 		console.log(foundBiz);
-		foundBiz.party = req.body.wait;
+		foundBiz[party] = req.body.wait;
 		foundBiz.save(function(err, savedBiz){
 			console.log(savedBiz);
 			res.json(savedBiz)
