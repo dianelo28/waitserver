@@ -246,7 +246,7 @@ app.listen(process.env.PORT || 3000, function () {
 // set location for static files
 // app.use(express.static(__dirname + '/www'));
 
-// // load public/index.html file (angular app)
-// app.get('*', function (req, res) {
-//   res.sendFile(__dirname + '/www/index.html');
-// });
+// load public/index.html file (angular app)
+app.get('/', function (req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
