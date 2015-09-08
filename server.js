@@ -163,13 +163,10 @@ app.get('/api/business/:id', function (req,res) {
 
 app.put('/api/business/:id', function (req,res){
 	var bizId = {business_id:req.params.id};
-
+  var party = req.body.party
 	Business.findOne(bizId, function(err, foundBiz){
 		console.log(foundBiz);
-		{foundBiz.twoWait = req.body.twoWait, 
-		foundBiz.fourWait = req.body.fourWait,
-		foundBiz.fiveWait = req.body.fiveWait}
-		
+		foundBiz.party = req.body.wait;
 		foundBiz.save(function(err, savedBiz){
 			console.log(savedBiz);
 			res.json(savedBiz)
