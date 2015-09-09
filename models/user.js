@@ -7,6 +7,7 @@ var Business = require("./business.js");
 
 
 var UserSchema = new Schema({
+	username: {type: String, unique: true, lowercase: true},
 	email: {type: String, unique: true, lowercase: true},
 	password: {type: String, select: false},
 	accessToken: String,
