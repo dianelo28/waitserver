@@ -166,16 +166,20 @@ app.get('/api/waits/:id', function (req,res){
   var bizId = {business_id: req.params.id};
     Business.findOne(bizId, function(err, foundBiz){
       res.json(foundBiz);
-      console.log(foundBiz)
+      // console.log(foundBiz)
     });
 });
 
 app.put('/api/business/:id', function (req,res){
 	var bizId = {business_id:req.params.id};
-  var party = req.body.party
+  var party = req.body.party;
+
 	Business.findOne(bizId, function(err, foundBiz){
-		console.log(foundBiz);
-		foundBiz[party] = req.body.wait;
+		// console.log(foundBiz);
+		foundBiz[party].wait = req.body.wait;
+    console.log(foundBiz[party].wait)
+    foundBiz[party].updatedAt = req.body.updated;
+    // console.log(req.body.updated);
 		foundBiz.save(function(err, savedBiz){
 			console.log(savedBiz);
 			res.json(savedBiz)
