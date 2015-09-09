@@ -1,5 +1,6 @@
 var express = require('express'),
 	app = express(),
+  http = require('http').createServer(app),
 	bodyParser = require('body-parser'),
 	yelp = require('node-yelp'),
 	mongoose = require('mongoose'),
@@ -10,6 +11,9 @@ var express = require('express'),
 	path = require('path'),
 	request = require('request'),
   _=require('underscore');
+
+//socket
+var io = require('socket.io')(http);
 
 var User = require("./models/user.js"),
 	Comment = require("./models/comment.js"),
@@ -249,8 +253,15 @@ app.delete('/api/:userid/favorites', function(req, res) {
   });
 });
 
+io.on("connection", function(socket){
+  // console.log("connected");
+  socket.on("send:comment", function(data){
+    socket.emit("send:comment", data);
+  });
+});
+
 // listen on port 3000
-app.listen(process.env.PORT || 3000, function () {
+http.listen(process.env.PORT || 3000, function () {
   console.log('server started on localhost 3000');
 });
 
@@ -258,6 +269,6 @@ app.listen(process.env.PORT || 3000, function () {
 // app.use(express.static(__dirname + '/www'));
 
 // load public/index.html file (angular app)
-app.get('*', function (req, res) {
-  res.sendFile(__dirname + '/index.html');
-});
+// app.get('*', function (req, res) {
+//   res.sendFile(__dirname + '/index.html');
+// });

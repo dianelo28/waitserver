@@ -19,9 +19,10 @@
     "mongoose": "^4.1.5",
     "node-yelp": "0.0.3",
     "request": "^2.61.0",
+    "socket.io": "^1.3.6",
     "underscore": "^1.8.3"
   },
-  "scripts":{
+  "scripts": {
     "start": "node server.js"
   },
   "devDependencies": {
