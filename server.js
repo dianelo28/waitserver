@@ -188,7 +188,8 @@ app.post('/api/business/:id/comments', function(req, res){
   console.log(bizId);
   var newComment = new Comment({
     createdAt: req.body.createdAt,
-    comments: req.body.comments
+    comments: req.body.comments,
+    author: req.body.author
   });
  
   newComment.save();
