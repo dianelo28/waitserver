@@ -4,7 +4,7 @@ var mongoose = require("mongoose"),
 var User = require("./user.js");
 
 var CommentSchema = new Schema({
-	createdAt: { type: Date, default: Date.now },
+	createdAt: Date,
 	comments: {type: String, require: true},
 	author: {type: String, require: true}
 });

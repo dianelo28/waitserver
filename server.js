@@ -253,10 +253,10 @@ app.delete('/api/:userid/favorites', function(req, res) {
   });
 });
 
-io.on("connection", function(socket){
+io.sockets.on("connection", function(socket){
   // console.log("connected");
   socket.on("send:comment", function(data){
-    socket.emit("send:comment", data);
+    io.sockets.emit("send:comment", data);
   });
 });
 
