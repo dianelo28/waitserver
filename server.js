@@ -193,17 +193,17 @@ app.put('/api/business/:id', function (req,res){
 
 app.post('/api/business/:id/comments', function(req, res){
   var bizId = {business_id:req.params.id};
-  console.log(bizId);
-  var newComment = new Comment({
-    createdAt: req.body.createdAt,
-    comments: req.body.comments,
-    author: req.body.author
-  });
- 
-  newComment.save();
 
   Business.findOne(bizId, function(err, test) {
+    var newComment = new Comment({
+      createdAt: req.body.createdAt,
+      comments: req.body.comments,
+      author: req.body.author
+    });
+   
+    newComment.save();    
     test.comments.push(newComment);
+    
     test.save(function(err, succ){
       console.log(err);
       console.log(succ);
@@ -257,6 +257,10 @@ io.sockets.on("connection", function(socket){
   // console.log("connected");
   socket.on("send:comment", function(data){
     io.sockets.emit("send:comment", data);
+  });
+
+  socket.on("send:time", function(data){
+    io.sockets.emit("send:time", data);
   });
 });
 
