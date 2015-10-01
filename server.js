@@ -258,7 +258,6 @@ io.sockets.on("connection", function(socket){
   socket.on("send:comment", function(data){
     io.sockets.emit("send:comment", data);
   });
-
   socket.on("send:time", function(data){
     io.sockets.emit("send:time", data);
   });
